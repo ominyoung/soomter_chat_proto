@@ -6,7 +6,7 @@ class IntroChat(models.Model):
     """
     sentence =  models.TextField()
     depth = models.IntegerField()
-    link = models.IntegerField()
+    link = models.IntegerField(null=True, blank=True)
 
     class Meta:
         verbose_name_plural = 'IntroChat DB'
