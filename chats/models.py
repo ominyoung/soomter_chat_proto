@@ -1,15 +1,15 @@
 from django.db import models
 
-class IntroChat(models.Model):
+class Message(models.Model):
     """
-        도입 DB
+        메시지 DB
     """
-    sentence =  models.TextField()
-    depth = models.IntegerField()
-    link = models.IntegerField(null=True, blank=True)
+    sentence = models.CharField("Sentence", max_length=80)
+    depth = models.PositiveIntegerField()
+    link = models.PositiveIntegerField(null=True, blank=True)
 
     class Meta:
-        verbose_name_plural = 'IntroChat DB'
-        db_table = 'introchat'
+        verbose_name_plural = 'Message DB'
+        db_table = 'messages'
 
     

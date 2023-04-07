@@ -1,6 +1,6 @@
 from django.contrib import admin
-from .models import IntroChat
+from .models import Message
 
-@admin.register(IntroChat)
+@admin.register(Message)
 class IntroChatAdmin(admin.ModelAdmin):
     list_display = ['id', 'sentence', 'depth', 'link']

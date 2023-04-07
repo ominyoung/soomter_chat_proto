@@ -1,6 +1,6 @@
-from django.urls import path, include
-from .views import IntroChatAPI
+from django.urls import path
+from .views import MessageAPIView
 
 urlpatterns = [
-    path("", IntroChatAPI.as_view())
+    path("message/<int:pk>/", MessageAPIView.as_view()),
 ]

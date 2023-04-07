@@ -9,7 +9,7 @@ urlpatterns = [
     path("account/", include("accounts.urls")),
     path("banners/", include("banners.urls")),
     path("counselor/", include("counselors.urls")),
-    path("v1/message/", include("chats.urls")),
+    path("v1/", include("chats.urls")),
 
 ]
 

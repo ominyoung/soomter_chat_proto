@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 REST_FRAMEWORK = {
     'DATETIME_FORMAT': '%Y-%m-%d',  # DateField : 년-월-일
     'DEFAULT_PERMISSION_CLASSES': (  # permission : default - 인증(로그인)한 유저만 접근 가능
-        #'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
