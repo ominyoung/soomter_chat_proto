@@ -1,17 +1,20 @@
-from django.shortcuts import render
-from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny
-from .serializers import UserSerializer
-from rest_framework.response import Response
 from rest_framework import status
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework.generics import CreateAPIView
+from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from accounts.serializers import SignUpSerializer
 
-class UserAPI(APIView):
-    permission_classes = (AllowAny,)  # ToDo : 인증 구현후 IsAuthenticated 로변경
+class SignUpAPIView(CreateAPIView):
+    serializer_class = SignUpSerializer
+    permission_classes = (AllowAny,)
 
-    def post(self, request):
-        serializer = UserSerializer(data=request.data)
-        print(serializer)
-        if serializer.is_valid():
-            serializer.save()
-        return Response(serializer.data, status=status.HTTP_200_OK)
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            self.perform_create(serializer)
+            headers = self.get_success_headers(serializer.data)
+            return Response({
+                "message": "User created successfully",
+                "data": serializer.data,
+            }, status=status.HTTP_201_CREATED, headers=headers)
+        return Response('잘못된 형식입니다.', status.HTTP_400_BAD_REQUEST)
